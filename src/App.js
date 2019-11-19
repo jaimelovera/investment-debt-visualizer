@@ -9,9 +9,9 @@ class App extends React.Component {
 		this.state = {
 			currentView: 'investment',
 			amount: '1000',
-			payment: '0',
+			payment: '50',
 			rate: '8',
-			years: '25'
+			years: '10'
 		};
 	}
 
@@ -20,9 +20,9 @@ class App extends React.Component {
 			this.setState({
 				currentView: 'investment',
 				amount: '1000',
-				payment: '0',
+				payment: '50',
 				rate: '8',
-				years: '25'
+				years: '10'
 			});
 		}
 		else if(e.target.value === 'debt') {
@@ -30,35 +30,43 @@ class App extends React.Component {
 				currentView: 'debt',
 				amount: '1000',
 				payment: '50',
-				rate: '16',
-				years: '25'
+				rate: '19',
+				years: '10'
 			});
 		}
 	}
 
 	handleAmountChange = (e) => {
-		if (e.target.value === '' || (/^[0-9]+$/.test(e.target.value) && e.target.value <= 1000000000) ) {
-			this.setState({amount: e.target.value.replace(/^0+/, '').split(" ").join("")});
+		if (e.target.value === '' || (/^\d+$/.test(e.target.value) && e.target.value <= 1000000000) ) {
+			this.setState({amount: e.target.value.replace(/^0/, '').split(" ").join("")});
 		};
 	}
 
 	handlePaymentChange = (e) => {
-		if (e.target.value === '' || (/^[0-9]+$/.test(e.target.value) && e.target.value <= 100000000) ) {
-			this.setState({payment: e.target.value.replace(/^0+/, '').split(" ").join("")});
+		if (e.target.value === '' || (/^\d+$/.test(e.target.value) && e.target.value <= 100000000) ) {
+			this.setState({payment: e.target.value.replace(/^0/, '').split(" ").join("")});
 		};
 	}
 
 	handleRateChange = (e) => {
 		let decimalPlaces = e.target.value.includes(".") ? e.target.value.split(".")[1].length : 0;
 		if (e.target.value === '' || e.target.value === '.' || (!isNaN(e.target.value) && e.target.value <= 100 && decimalPlaces <= 2 )) {
-			this.setState({rate: e.target.value.replace(/^0+[0-9]/, '0').split(" ").join("")});
+			
+			let val = e.target.value;
+			if (/^0+\d/.test(e.target.value)) {
+				val = val.substr(1);
+			};
+			if (/^\./.test(e.target.value)) {
+				val = '0.';
+			};
+			this.setState({rate: val.split(" ").join("")});
 		};
 
 	}
 
 	handleYearsChange = (e) => {
-		if (e.target.value === '' || (/^[0-9]+$/.test(e.target.value) && e.target.value <= 100) ) {
-			this.setState({years: e.target.value.replace(/^0+/, '').split(" ").join("")});
+		if (e.target.value === '' || (/^\d+$/.test(e.target.value) && e.target.value <= 100)) {
+			this.setState({years: e.target.value.replace(/^0/, '').split(" ").join("")});
 		};
 	}
 
