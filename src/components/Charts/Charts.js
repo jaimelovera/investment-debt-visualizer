@@ -97,9 +97,9 @@ function Charts(props) {
 	    return (
 	      <div className="charts-custom-tooltip">
 	      	<p className="charts-label">{`${label}`}</p>
-	        <p className="charts-label-total">{`Total : ${payload[0].value+payload[1].value}`}</p>
-	        <p className="charts-label-contributions">{`${payload[0].name} : ${payload[0].value}`}</p>
-	       	<p className="charts-label-interest">{`${payload[1].name} : ${payload[1].value}`}</p>
+	        <p className="charts-label-total">{`Total : $${parseInt(payload[0].value+payload[1].value).toLocaleString()}`}</p>
+	        <p className="charts-label-contributions">{`${payload[0].name} : $${parseInt(payload[0].value).toLocaleString()}`}</p>
+	       	<p className="charts-label-interest">{`${payload[1].name} : $${parseInt(payload[1].value).toLocaleString()}`}</p>
 	      </div>
 	    );
 	  }
@@ -121,9 +121,9 @@ function Charts(props) {
 
 
 	return (
-		<React.Fragment>
+		<div className='charts-container'>
 			{props.currentView === 'investment' ? investmentDescription : debtDescription}
-			<ResponsiveContainer width={700} height={300}>
+			<ResponsiveContainer>
 				<BarChart data={data} margin={{top: 10, right: 30, left: 0, bottom: 0,}}>
 					<CartesianGrid strokeDasharray="3 3" />
 					<XAxis dataKey="Year" />
@@ -143,7 +143,7 @@ function Charts(props) {
 						  />
 				</BarChart>
 			</ResponsiveContainer>
-  		</React.Fragment>
+  		</div>
 	);
 }
 

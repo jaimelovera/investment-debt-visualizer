@@ -1,0 +1,44 @@
+.charts-container {
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	max-width: 900px;
+	height: 400px;
+	margin: auto;
+}
+
+.charts-container p{
+	text-align: center;
+	padding: 1rem 4rem 1rem 4rem;
+	font-size: 1.5rem;
+}
+
+.charts-custom-tooltip {
+	background-color: #FFF;
+	border: 1px solid #B9B9B9;
+	padding: 0.75rem;
+}
+
+.charts-custom-tooltip p{
+	font-size: 0.85em;
+}
+
+.charts-custom-tooltip .charts-label{
+	font-size: 1.1em;
+	padding-bottom: 0.5rem;
+	margin: 0.5rem;
+	border-bottom: 1px solid #000;
+}
+
+.charts-custom-tooltip .charts-label-total{
+	color: #9A9A9A;
+}
+
+.charts-custom-tooltip .charts-label-contributions{
+	color: #82CA9D;
+}
+
+.charts-custom-tooltip .charts-label-interest{
+	color: #FFC658;
+}
