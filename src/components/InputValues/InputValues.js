@@ -13,7 +13,7 @@ function InputValues(props) {
 			<input value={props.payment} onChange={props.changePayment} placeholder='Required'/>
 		</div>,
 		<div key={3}>
-			<h1>Rate of Return:</h1>
+			<h1>Annual Rate of Return:</h1>
 			<input value={props.rate} onChange={props.changeRate} placeholder='Required'/>
 		</div>,
 		<div key={4}>
@@ -32,7 +32,7 @@ function InputValues(props) {
 			<input value={props.payment} onChange={props.changePayment} placeholder='Required'/>
 		</div>,
 		<div key={3}>
-			<h1>Interest Rate:</h1>
+			<h1>Annual Percentage Rate:</h1>
 			<input value={props.rate} onChange={props.changeRate} placeholder='Required'/>
 		</div>
 	];

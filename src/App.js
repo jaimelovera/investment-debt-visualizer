@@ -1,7 +1,7 @@
-import React from 'react';
-import TypeSwitcher from './components/TypeSwitcher/TypeSwitcher.js';
-import InputValues from './components/InputValues/InputValues.js';
-import Charts from './components/Charts/Charts.js';
+import React from 'react'
+import TypeSwitcher from './components/TypeSwitcher/TypeSwitcher.js'
+import InputValues from './components/InputValues/InputValues.js'
+import Charts from './components/Charts/Charts.js'
 
 class App extends React.Component {
 	constructor(props) {
@@ -12,7 +12,7 @@ class App extends React.Component {
 			payment: '50',
 			rate: '8',
 			years: '10'
-		};
+		}
 	}
 
 	handleCurrentViewChange = (e) => {
@@ -23,29 +23,33 @@ class App extends React.Component {
 				payment: '50',
 				rate: '8',
 				years: '10'
-			});
+			})
 		}
 		else if(e.target.value === 'debt') {
 			this.setState({
 				currentView: 'debt',
-				amount: '1000',
+				amount: '5000',
 				payment: '50',
-				rate: '19',
+				rate: '18',
 				years: '10'
-			});
+			})
 		}
 	}
 
 	handleAmountChange = (e) => {
 		if (e.target.value === '' || (/^\d+$/.test(e.target.value) && e.target.value <= 1000000000) ) {
 			this.setState({amount: e.target.value.replace(/^0/, '').split(" ").join("")});
-		};
+		}
 	}
 
 	handlePaymentChange = (e) => {
 		if (e.target.value === '' || (/^\d+$/.test(e.target.value) && e.target.value <= 100000000) ) {
-			this.setState({payment: e.target.value.replace(/^0/, '').split(" ").join("")});
-		};
+			let val = e.target.value;
+			if (/^0+\d/.test(e.target.value)) {
+				val = val.substr(1);
+			}
+			this.setState({payment: val.split(" ").join("")});
+		}
 	}
 
 	handleRateChange = (e) => {
@@ -55,19 +59,19 @@ class App extends React.Component {
 			let val = e.target.value;
 			if (/^0+\d/.test(e.target.value)) {
 				val = val.substr(1);
-			};
+			}
 			if (/^\./.test(e.target.value)) {
 				val = '0.';
-			};
+			}
 			this.setState({rate: val.split(" ").join("")});
-		};
+		}
 
 	}
 
 	handleYearsChange = (e) => {
 		if (e.target.value === '' || (/^\d+$/.test(e.target.value) && e.target.value <= 100)) {
 			this.setState({years: e.target.value.replace(/^0/, '').split(" ").join("")});
-		};
+		}
 	}
 
 	render() {
@@ -76,7 +80,7 @@ class App extends React.Component {
 				<TypeSwitcher
 					currentView = {this.state.currentView}
 					changeCurrentView = {this.handleCurrentViewChange}
-				/>
+					/>
 				<InputValues
 					currentView = {this.state.currentView}
 					amount = {this.state.amount}
@@ -87,8 +91,14 @@ class App extends React.Component {
 					changePayment = {this.handlePaymentChange}
 					changeRate = {this.handleRateChange}
 					changeYears = {this.handleYearsChange}
-				/>
-				<Charts/>
+					/>
+				<Charts
+					currentView = {this.state.currentView}
+					amount = {this.state.amount}
+					payment = {this.state.payment}
+					rate = {this.state.rate}
+					years = {this.state.years}
+					/>
 			</React.Fragment>
 		);
 	}

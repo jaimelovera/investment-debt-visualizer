@@ -1,35 +1,108 @@
-import React from 'react';
-import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer} from 'recharts';
-import './Charts.css';
+import React from 'react'
+import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer} from 'recharts'
+import './Charts.css'
 
 //TO-DO: Generate data from the props, design the chart, maybe add a pie chart?
 function Charts(props) {
-	let data = [{name: '2019', total: 10}, 
-				{name: 'Year 2', total: 15}, 
-				{name: 'Year 3', total: 20},
-				{name: 'Year 4', total: 25},
-				{name: 'Year 5', total: 30},
-				{name: 'Year 6', total: 35},
-				{name: 'Year 7', total: 40},
-				{name: 'Year 8', total: 45},
-				{name: 'Year 9', total: 50},
-				{name: 'Year 10', total: 55}]
+
+	let data = []
+	let currYear = (new Date).getFullYear()
+	let rate = parseInt(props.rate)/100
+	let payment = parseInt(props.payment)
+	let amount = parseInt(props.amount)
+
+	/* Populate this data if viewing an investment chart. */
+	if (props.currentView === 'investment'){
+		let contributions = amount
+		let total = amount
+		let roundedTotal = amount
+
+		data.push({Year: currYear, Total: total, Contributions: contributions, Interest: total - contributions})
+
+		for(let i = 1; i <= parseInt(props.years); i++){
+			/* Loop over 12 months */
+			for(let i = 0; i < 12; i++){
+				total = total * (1+rate/12) + payment
+				contributions += payment
+			}
+			roundedTotal = (Math.round(total/10)*10).toFixed(0)
+			data.push({Year: currYear+i, Total: roundedTotal, Contributions: contributions, Interest: roundedTotal - contributions})
+		}
+	}
+
+	/* Populate this data if viewing an debt chart. */
+	if (props.currentView === 'debt'){
+		let total = amount
+		let principal = amount
+		let monthlyRate = rate/12
+
+		data.push({Year: currYear, Total: total, Principal: principal, Interest: total - principal})
+		let limit = currYear + 50
+
+		/* Run until debt is paid off, or only until the 100th year if it takes longer to pay off total with given parameters. */
+		while(total > 0 && currYear < limit) {
+			/* Loop over 12 months */
+			for(let i = 0; i < 12; i++){
+				total = total * (1+monthlyRate)
+				total -= payment
+				principal -= payment
+			}
+			currYear += 1
+			let roundedTotal = (Math.round(total/10)*10).toFixed(0)
+
+			/* Check if the principal get paid of next iteration. */
+			if(principal < 0){
+				/* Check if the total balance is paid of next iteration. */
+				if(total > 0){
+					data.push({Year: currYear, Total: roundedTotal, Principal: 0, Interest: roundedTotal - 0})
+				}
+				else{
+					data.push({Year: currYear, Total: 0, Principal: 0, Interest: 0})
+					break
+				}
+			}
+			else{
+				data.push({Year: currYear, Total: roundedTotal, Principal: principal, Interest: roundedTotal - principal})
+			}
+		}
+	}
+
+	/* Customize the barcharts tooltip. */
+	let CustomTooltip = ({ active, payload, label }) => {
+	  if (active) {
+	    return (
+	      <div className="charts-custom-tooltip">
+	      	<p className="charts-label">{`${label}`}</p>
+	        <p className="charts-label-total">{`Total : ${payload[0].value+payload[1].value}`}</p>
+	        <p className="charts-label-contributions">{`${payload[0].name} : ${payload[0].value}`}</p>
+	       	<p className="charts-label-interest">{`${payload[1].name} : ${payload[1].value}`}</p>
+	      </div>
+	    );
+	  }
+	  return null;
+	};
+
 	return (
 		<React.Fragment>
-			<div>Hello from Charts</div>
 			<ResponsiveContainer width={700} height={300}>
-				<AreaChart
-					data={data}
-					margin={{top: 10, right: 30, left: 0, bottom: 0,}}
-					>
+				<BarChart data={data} margin={{top: 10, right: 30, left: 0, bottom: 0,}}>
 					<CartesianGrid strokeDasharray="3 3" />
-					<XAxis dataKey="name" />
+					<XAxis dataKey="Year" />
 					<YAxis />
-					<Tooltip />
-					<Area type="monotone" dataKey="total" stackId="1" stroke="#8884d8" fill="#8884d8" />
-					<Area type="monotone" dataKey="pv" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
-					<Area type="monotone" dataKey="amt" stackId="1" stroke="#ffc658" fill="#ffc658" />
-				</AreaChart>
+					<Tooltip content={<CustomTooltip />} />
+					<Bar type="monotone"
+						  dataKey={props.currentView === 'investment' ? 'Contributions' : 'Principal'}
+						  stackId="1"
+						  stroke="#82ca9d"
+						  fill="#82ca9d"
+						  />
+					<Bar type="monotone"
+						  dataKey="Interest"
+						  stackId="1"
+						  stroke="#ffc658"
+						  fill="#ffc658"
+						  />
+				</BarChart>
 			</ResponsiveContainer>
   		</React.Fragment>
 	);
