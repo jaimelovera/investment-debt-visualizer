@@ -95,12 +95,12 @@ function Charts(props) {
 	let CustomTooltip = ({ active, payload, label }) => {
 	  if (active) {
 	    return (
-	      <div className="charts-custom-tooltip">
-	      	<p className="charts-label">{`${label}`}</p>
-	        <p className="charts-label-total">{`Total : $${parseInt(payload[0].value+payload[1].value).toLocaleString()}`}</p>
-	        <p className="charts-label-contributions">{`${payload[0].name} : $${parseInt(payload[0].value).toLocaleString()}`}</p>
-	       	<p className="charts-label-interest">{`${payload[1].name} : $${parseInt(payload[1].value).toLocaleString()}`}</p>
-	      </div>
+			<div className="charts-custom-tooltip">
+				<p className="charts-label">{`${label}`}</p>
+				<p className="charts-label-total">{`Total : $${parseInt(payload[0].value+payload[1].value).toLocaleString()}`}</p>
+				<p className="charts-label-interest">{`${payload[1].name} : $${parseInt(payload[1].value).toLocaleString()}`}</p>
+				<p className="charts-label-contributions">{`${payload[0].name} : $${parseInt(payload[0].value).toLocaleString()}`}</p>
+			</div>
 	    );
 	  }
 	  return null;
@@ -124,7 +124,7 @@ function Charts(props) {
 		<div className='charts-container'>
 			{props.currentView === 'investment' ? investmentDescription : debtDescription}
 			<ResponsiveContainer>
-				<BarChart data={data} margin={{top: 10, right: 30, left: 0, bottom: 0,}}>
+				<BarChart data={data} margin={{top: 20, right: 20, left: 20, bottom: 20,}}>
 					<CartesianGrid strokeDasharray="3 3" />
 					<XAxis dataKey="Year" />
 					<YAxis />

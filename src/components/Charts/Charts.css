@@ -4,14 +4,15 @@
 	justify-content: center;
 	width: 100%;
 	max-width: 900px;
-	height: 400px;
+	height: 500px;
 	margin: auto;
+	padding-bottom: 8rem;
 }
 
 .charts-container p{
+	font-size: 2.25rem;
 	text-align: center;
 	padding: 1rem 4rem 1rem 4rem;
-	font-size: 1.5rem;
 }
 
 .charts-custom-tooltip {
@@ -21,12 +22,13 @@
 }
 
 .charts-custom-tooltip p{
-	font-size: 0.85em;
+	font-size: 1.5em;
+	padding: 0;
 }
 
 .charts-custom-tooltip .charts-label{
-	font-size: 1.1em;
-	padding-bottom: 0.5rem;
+	font-size: 2em;
+	padding-bottom: 0.75rem;
 	margin: 0.5rem;
 	border-bottom: 1px solid #000;
 }

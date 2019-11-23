@@ -2,27 +2,27 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	padding: 2rem;
+	padding: 4rem;
 }
 
 .inputvalues-item {
 	text-align: center;
-	padding: 0 1rem 0 1rem;
+	padding: 0 2rem 0 2rem;
 }
 
 .inputvalues-item h1{
-	font-size: 0.8em;
+	font-size: 1.25em;
 	text-align: left;
 }
 
 .inputvalues-input {
-	font-size: 1.4em;
+	font-size: 2em;
     border: 1px solid #ccc;
 }
 
 .inputvalues-input input {
-	width: 120px;
-	font-size: 0.7em;
+	width: 100px;
+	font-size: 0.75em;
     border: 0;
     outline: none;
 }
