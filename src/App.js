@@ -9,29 +9,24 @@ class App extends React.Component {
 		this.state = {
 			currentView: 'investment',
 			amount: '1000',
-			payment: '50',
+			payment: '100',
 			rate: '8',
-			years: '10'
+			years: '20'
 		}
+		this.baseState = this.state
 	}
 
 	handleCurrentViewChange = (e) => {
 		if(e.target.value === 'investment') {
-			this.setState({
-				currentView: 'investment',
-				amount: '1000',
-				payment: '50',
-				rate: '8',
-				years: '10'
-			})
+			this.setState(this.baseState)
 		}
 		else if(e.target.value === 'debt') {
 			this.setState({
 				currentView: 'debt',
 				amount: '5000',
-				payment: '50',
-				rate: '18',
-				years: '10'
+				payment: '100',
+				rate: '16',
+				years: '0'
 			})
 		}
 	}

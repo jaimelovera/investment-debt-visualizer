@@ -46,21 +46,29 @@ function Charts(props) {
 	/* Populate data if viewing an debt chart. */
 	if (props.currentView === 'debt'){
 		let total = amount
+		let prevTotal = amount
 		let principal = amount
 		let monthlyRate = rate/12
 
 		data.push({Year: currYear, Total: total, Principal: principal, Interest: total - principal})
-		let limit = currYear + 40
 
-		/* Run until debt is paid off, or only until the 100th year if it takes longer to pay off total with given parameters. */
-		while(total > 0 && currYear < limit) {
+		/* Run until debt is paid off, or only for ten years if debt is increasing with given parameters */
+		while(total < prevTotal || years <= 10) {
+			if(total >= prevTotal && years === 10){
+				years = -1
+				break
+			}
+
 			/* Loop over 12 months */
+			prevTotal = total
 			for(let i = 0; i < 12; i++){
 				total = total * (1+monthlyRate)
 				total -= payment
 				principal -= payment
 			}
 			currYear += 1
+			years += 1 /* This counter is used to say how many years it took to pay off debt in the description.*/
+
 			let roundedTotal = Math.round(total).toFixed(0)
 
 			/* Check if the principal get paid of next iteration. */
@@ -77,6 +85,7 @@ function Charts(props) {
 			else{
 				data.push({Year: currYear, Total: roundedTotal, Principal: principal, Interest: roundedTotal - principal})
 			}
+
 		}
 	}
 
@@ -95,8 +104,15 @@ function Charts(props) {
 	  return null;
 	};
 
+	/* The description that will sumarize the chart. */
+	let investmentDescription = <p>Your investment will be worth $500,000 in {years} years.</p>
+	let debtDescription = years === -1 ? 
+		<p>Your debt will increase indefinitely, increase your monthly payment.</p> : 
+		<p>You will payoff your debt in {years} years, with $1,500 of interest.</p>
+
 	return (
 		<React.Fragment>
+			{props.currentView === 'investment' ? investmentDescription : debtDescription}
 			<ResponsiveContainer width={700} height={300}>
 				<BarChart data={data} margin={{top: 10, right: 30, left: 0, bottom: 0,}}>
 					<CartesianGrid strokeDasharray="3 3" />
