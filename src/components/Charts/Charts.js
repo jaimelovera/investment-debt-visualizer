@@ -2,42 +2,55 @@ import React from 'react'
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer} from 'recharts'
 import './Charts.css'
 
-//TO-DO: Generate data from the props, design the chart, maybe add a pie chart?
 function Charts(props) {
 
+	/* Set parameter defaults for when no value is inputted. */
 	let data = []
 	let currYear = (new Date).getFullYear()
-	let rate = parseInt(props.rate)/100
-	let payment = parseInt(props.payment)
-	let amount = parseInt(props.amount)
+	let years = 0
+	if(props.years != ''){
+		years = parseInt(props.years)
+	}
+	let rate = 0
+	if(props.rate != ''){
+		rate = parseInt(props.rate)/100
+	}
+	let payment = 0
+	if(props.payment != ''){
+		payment = parseInt(props.payment)
+	}
+	let amount = 0
+	if(props.amount != ''){
+		amount = parseInt(props.amount)
+	}
 
-	/* Populate this data if viewing an investment chart. */
+
+	/* Populate data if viewing an investment chart. */
 	if (props.currentView === 'investment'){
 		let contributions = amount
 		let total = amount
-		let roundedTotal = amount
 
 		data.push({Year: currYear, Total: total, Contributions: contributions, Interest: total - contributions})
 
-		for(let i = 1; i <= parseInt(props.years); i++){
+		for(let i = 1; i <= years; i++){
 			/* Loop over 12 months */
 			for(let i = 0; i < 12; i++){
 				total = total * (1+rate/12) + payment
 				contributions += payment
 			}
-			roundedTotal = (Math.round(total/10)*10).toFixed(0)
+			let roundedTotal = Math.round(total).toFixed(0)
 			data.push({Year: currYear+i, Total: roundedTotal, Contributions: contributions, Interest: roundedTotal - contributions})
 		}
 	}
 
-	/* Populate this data if viewing an debt chart. */
+	/* Populate data if viewing an debt chart. */
 	if (props.currentView === 'debt'){
 		let total = amount
 		let principal = amount
 		let monthlyRate = rate/12
 
 		data.push({Year: currYear, Total: total, Principal: principal, Interest: total - principal})
-		let limit = currYear + 50
+		let limit = currYear + 40
 
 		/* Run until debt is paid off, or only until the 100th year if it takes longer to pay off total with given parameters. */
 		while(total > 0 && currYear < limit) {
@@ -48,7 +61,7 @@ function Charts(props) {
 				principal -= payment
 			}
 			currYear += 1
-			let roundedTotal = (Math.round(total/10)*10).toFixed(0)
+			let roundedTotal = Math.round(total).toFixed(0)
 
 			/* Check if the principal get paid of next iteration. */
 			if(principal < 0){

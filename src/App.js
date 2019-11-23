@@ -38,7 +38,11 @@ class App extends React.Component {
 
 	handleAmountChange = (e) => {
 		if (e.target.value === '' || (/^\d+$/.test(e.target.value) && e.target.value <= 1000000000) ) {
-			this.setState({amount: e.target.value.replace(/^0/, '').split(" ").join("")});
+			let val = e.target.value;
+			if (/^0+\d/.test(e.target.value)) {
+				val = val.substr(1);
+			}
+			this.setState({amount: val.split(" ").join("")});
 		}
 	}
 
@@ -70,7 +74,11 @@ class App extends React.Component {
 
 	handleYearsChange = (e) => {
 		if (e.target.value === '' || (/^\d+$/.test(e.target.value) && e.target.value <= 100)) {
-			this.setState({years: e.target.value.replace(/^0/, '').split(" ").join("")});
+			let val = e.target.value;
+			if (/^0+\d/.test(e.target.value)) {
+				val = val.substr(1);
+			}
+			this.setState({years: val.split(" ").join("")});
 		}
 	}
 
