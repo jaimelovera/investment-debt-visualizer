@@ -8,6 +8,7 @@ function Charts(props) {
 	let data = []
 	let currYear = (new Date).getFullYear()
 	let years = 0
+	let totalInterest = 0
 	if(props.years != ''){
 		years = parseInt(props.years)
 	}
@@ -62,6 +63,7 @@ function Charts(props) {
 			/* Loop over 12 months */
 			prevTotal = total
 			for(let i = 0; i < 12; i++){
+				totalInterest += (total * (monthlyRate))
 				total = total * (1+monthlyRate)
 				total -= payment
 				principal -= payment
@@ -71,9 +73,9 @@ function Charts(props) {
 
 			let roundedTotal = Math.round(total).toFixed(0)
 
-			/* Check if the principal get paid of next iteration. */
+			/* Check if the principal gets paid off on next iteration. */
 			if(principal < 0){
-				/* Check if the total balance is paid of next iteration. */
+				/* Check if the total balance is paid off on next iteration. */
 				if(total > 0){
 					data.push({Year: currYear, Total: roundedTotal, Principal: 0, Interest: roundedTotal - 0})
 				}
@@ -103,12 +105,20 @@ function Charts(props) {
 	  }
 	  return null;
 	};
-
+	
 	/* The description that will sumarize the chart. */
-	let investmentDescription = <p>Your investment will be worth $500,000 in {years} years.</p>
-	let debtDescription = years === -1 ? 
-		<p>Your debt will increase indefinitely, increase your monthly payment.</p> : 
-		<p>You will payoff your debt in {years} years, with $1,500 of interest.</p>
+	let investmentDescription = <p>Your investment will be worth ${parseInt(data[data.length-1].Total).toLocaleString()} in {years} years.</p>
+	let debtDescription = /* A layered ternary expression to choose appropriate expression. */
+		years === -1 ? 
+		<p>Your debt will increase indefinitely. Increase your monthly payment.</p> : 
+		years ===  1 ? 
+		parseInt(totalInterest) >= 0 ? 
+		<p>You will payoff your debt within 1 year, with ${parseInt(totalInterest.toFixed(0)).toLocaleString()} paid in interest.</p> :
+		<p>You will payoff your debt within 1 year, with no interest paid.</p> : 
+		parseInt(totalInterest) >= 0 ? 
+		<p>You will payoff your debt in {years} years, with ${parseInt(totalInterest.toFixed(0)).toLocaleString()} paid in interest.</p> :
+		<p>You will payoff your debt in {years} years, with no interest paid.</p>
+
 
 	return (
 		<React.Fragment>
