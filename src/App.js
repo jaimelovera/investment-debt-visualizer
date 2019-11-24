@@ -95,6 +95,9 @@ class App extends React.Component {
 					currentView = {this.state.currentView}
 					changeCurrentView = {this.handleCurrentViewChange}
 					/>
+				<Description 
+					currentView = {this.state.currentView}
+					/>
 				<InputValues
 					currentView = {this.state.currentView}
 					amount = {this.state.amount}
@@ -112,9 +115,6 @@ class App extends React.Component {
 					payment = {this.state.payment}
 					rate = {this.state.rate}
 					years = {this.state.years}
-					/>
-				<Description 
-					currentView = {this.state.currentView}
 					/>
 			</React.Fragment>
 		);
