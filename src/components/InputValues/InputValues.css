@@ -16,8 +16,9 @@
 }
 
 .inputvalues-input {
-	font-size: 2em;
-    border: 1px solid #ccc;
+	font-size: 1.65em;
+    border: 1px solid #CCC;
+    padding: 2px;
 }
 
 .inputvalues-input input {
