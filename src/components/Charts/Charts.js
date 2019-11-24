@@ -6,23 +6,23 @@ function Charts(props) {
 
 	/* Set parameter defaults for when no value is inputted. */
 	let data = []
-	let currYear = (new Date).getFullYear()
-	let years = 0
+	let currYear = (new Date()).getFullYear()
 	let totalInterest = 0
-	if(props.years != ''){
+	let years = 0
+	if(props.years !== ''){
 		years = parseInt(props.years)
 	}
 	let rate = 0
-	if(props.rate != ''){
+	if(props.rate !== ''){
 		rate = parseInt(props.rate)/100
 	}
 	let payment = 0
-	if(props.payment != ''){
-		payment = parseInt(props.payment)
+	if(props.payment !== ''){
+		payment = parseInt(props.payment.split(",").join(""))
 	}
 	let amount = 0
-	if(props.amount != ''){
-		amount = parseInt(props.amount)
+	if(props.amount !== ''){
+		amount = parseInt(props.amount.split(",").join(""))
 	}
 
 

@@ -2,14 +2,15 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	padding: 3rem 1rem 3rem 1rem;
+	padding: 1.5rem;
 	background-color: #1BE300;
 }
 
 .typeswitcher-container button{
-	font-size: 2em;
-	padding: 1rem;
-	margin: 1rem;
+	width: 150px;
+	font-size: 1.4em;
+	padding: 0.4rem;
+	margin: 0 1rem 0 1rem;
 	background: none;
 	cursor: pointer;
 	outline: none;

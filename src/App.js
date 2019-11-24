@@ -1,14 +1,15 @@
 import React from 'react'
-import TypeSwitcher from './components/TypeSwitcher/TypeSwitcher.js'
-import InputValues from './components/InputValues/InputValues.js'
-import Charts from './components/Charts/Charts.js'
+import TypeSwitcher from './components/TypeSwitcher/TypeSwitcher'
+import InputValues from './components/InputValues/InputValues'
+import Charts from './components/Charts/Charts'
+import Description from './components/Description/Description'
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			currentView: 'investment',
-			amount: '1000',
+			amount: '1,000',
 			payment: '100',
 			rate: '8',
 			years: '20'
@@ -23,7 +24,7 @@ class App extends React.Component {
 		else if(e.target.value === 'debt') {
 			this.setState({
 				currentView: 'debt',
-				amount: '5000',
+				amount: '5,000',
 				payment: '100',
 				rate: '16',
 				years: '0'
@@ -32,22 +33,32 @@ class App extends React.Component {
 	}
 
 	handleAmountChange = (e) => {
-		if (e.target.value === '' || (/^\d+$/.test(e.target.value) && e.target.value <= 1000000000) ) {
-			let val = e.target.value;
-			if (/^0+\d/.test(e.target.value)) {
+		/* Dont allow spaces. Also remove the commas from the formated value. Since the state will be stored in
+		   the comma formatted number so the input text field looks nice. */
+		let val = e.target.value.split(",").join("").split(" ").join("")
+		if(val !== ''){
+			val = parseInt(val)
+		}
+		if (val === '' || (/^\d+$/.test(val) && val <= 10000000) ) {
+			if (/^0+\d/.test(val)) {
 				val = val.substr(1);
 			}
-			this.setState({amount: val.split(" ").join("")});
+			this.setState({amount: val.toLocaleString()});
 		}
 	}
 
 	handlePaymentChange = (e) => {
-		if (e.target.value === '' || (/^\d+$/.test(e.target.value) && e.target.value <= 100000000) ) {
-			let val = e.target.value;
-			if (/^0+\d/.test(e.target.value)) {
+		/* Dont allow spaces. Also remove the commas from the formated value. Since the state will be stored in
+		   the comma formatted number so the input text field looks nice. */
+		let val = e.target.value.split(",").join("").split(" ").join("")
+		if(val !== ''){
+			val = parseInt(val)
+		}
+		if (val === '' || (/^\d+$/.test(val) && val <= 1000000) ) {
+			if (/^0+\d/.test(val)) {
 				val = val.substr(1);
 			}
-			this.setState({payment: val.split(" ").join("")});
+			this.setState({payment: val.toLocaleString()});
 		}
 	}
 
@@ -101,6 +112,9 @@ class App extends React.Component {
 					payment = {this.state.payment}
 					rate = {this.state.rate}
 					years = {this.state.years}
+					/>
+				<Description 
+					currentView = {this.state.currentView}
 					/>
 			</React.Fragment>
 		);
