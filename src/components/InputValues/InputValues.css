@@ -36,20 +36,9 @@
     outline: none;
 }
 
-@media screen and (min-width: 398px) {
-	.inputvalues-item {
-		padding: 0 1rem 0 1rem;
-	}
-}
-
 @media screen and (min-width: 624px) {
 	.inputvalues-item {
-		padding: 0 2rem 0 2rem;
-	}
-}
-
-@media screen and (min-width: 768px) {
-	.inputvalues-item {
-		padding: 0 3rem 0 3rem;
+		padding-left: 2rem;
+		padding-right: 2rem;
 	}
 }
