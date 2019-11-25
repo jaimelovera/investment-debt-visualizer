@@ -107,16 +107,16 @@ function Charts(props) {
 	};
 	
 	/* The description that will sumarize the chart. */
-	let investmentDescription = <p>Your investment will be worth ${parseInt(data[data.length-1].Total).toLocaleString()} in {years} years.</p>
+	let investmentDescription = <p>Your investment will be worth <span className='charts-blue-text'>${parseInt(data[data.length-1].Total).toLocaleString()}</span> in {years} years.</p>
 	let debtDescription = /* A layered ternary expression to choose appropriate expression. */
 		years === -1 ? 
 		<p>Your debt will increase indefinitely. Increase your monthly payment.</p> : 
 		years ===  1 ? 
 		parseInt(totalInterest) >= 0 ? 
-		<p>You will payoff your debt within 1 year, with ${parseInt(totalInterest.toFixed(0)).toLocaleString()} paid in interest.</p> :
+		<p>You will payoff your debt within 1 year, with <span className='charts-red-text'>${parseInt(totalInterest.toFixed(0)).toLocaleString()}</span> paid in interest.</p> :
 		<p>You will payoff your debt within 1 year, with no interest paid.</p> : 
 		parseInt(totalInterest) >= 0 ? 
-		<p>You will payoff your debt in {years} years, with ${parseInt(totalInterest.toFixed(0)).toLocaleString()} paid in interest.</p> :
+		<p>You will payoff your debt in {years} years, with <span className='charts-red-text'>${parseInt(totalInterest.toFixed(0)).toLocaleString()}</span> paid in interest.</p> :
 		<p>You will payoff your debt in {years} years, with no interest paid.</p>
 
 
@@ -124,7 +124,7 @@ function Charts(props) {
 		<div className='charts-container'>
 			{props.currentView === 'investment' ? investmentDescription : debtDescription}
 			<ResponsiveContainer>
-				<BarChart data={data} margin={{top: 20, right: 20, left: 20, bottom: 20,}}>
+				<BarChart data={data} margin={{top: 10, right: 10, left: 10, bottom: 10,}}>
 					<CartesianGrid strokeDasharray="3 3" />
 					<XAxis dataKey="Year" />
 					<YAxis />

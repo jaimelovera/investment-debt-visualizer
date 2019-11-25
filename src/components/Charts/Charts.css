@@ -7,13 +7,14 @@
 	max-width: 900px;
 	height: 500px;
 	margin: auto;
-	padding-bottom: 2rem;
+	padding-bottom: 6rem;
 }
 
 .charts-container p{
-	font-size: 2.25em;
+	font-size: 2em;
 	text-align: center;
-	padding: 0 4rem 0 4rem;
+	padding: 2rem 1rem 0 1rem;
+
 }
 
 .charts-custom-tooltip {
@@ -23,14 +24,14 @@
 }
 
 .charts-custom-tooltip p{
-	font-size: 1.5em;
+	font-size: 1em;
 	padding: 0;
 }
 
 .charts-custom-tooltip .charts-label{
-	font-size: 2em;
+	font-size: 1.5em;
 	padding-bottom: 0.75rem;
-	margin: 0.5rem;
+	margin: auto;
 	border-bottom: 1px solid #000;
 }
 
@@ -44,4 +45,28 @@
 
 .charts-custom-tooltip .charts-label-interest{
 	color: #FFC658;
+}
+
+.charts-blue-text{
+	color: #0DB7ED;
+}
+
+.charts-red-text{
+	color: #F50A0A;
+}
+
+@media screen and (min-width: 768px) {
+	.charts-container p{
+		font-size: 2.25em;
+		padding: 4rem 4rem 0 4rem;
+	}
+
+	.charts-custom-tooltip p{
+		font-size: 1.5em;
+		padding:0;
+	}
+
+	.charts-custom-tooltip .charts-label{
+		font-size: 2em;
+	}
 }

@@ -2,28 +2,54 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	padding: 1rem;
+	align-items: stretch;
+	background-color: #E6E6E6;
+	padding: 1.5rem;
+	margin: auto;
+	width: 100%;
+	max-width: 700px;
+	height: 100%;
 }
 
 .inputvalues-item {
 	text-align: center;
-	padding: 0 2rem 0 2rem;
+	padding: 1rem;
 }
 
 .inputvalues-item h1{
-	font-size: 1.25em;
+	font-size: 1.15em;
 	text-align: left;
 }
 
 .inputvalues-input {
-	font-size: 1.65em;
-    border: 1px solid #CCC;
+	background-color: #FFF;
+	font-size: 1.25em;
+    border: 0;
     padding: 2px;
 }
 
 .inputvalues-input input {
-	width: 100px;
-	font-size: 0.75em;
+	background-color: #FFF;
+	width: 65px;
+	font-size: 0.9em;
     border: 0;
     outline: none;
+}
+
+@media screen and (min-width: 398px) {
+	.inputvalues-item {
+		padding: 0 1rem 0 1rem;
+	}
+}
+
+@media screen and (min-width: 624px) {
+	.inputvalues-item {
+		padding: 0 2rem 0 2rem;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.inputvalues-item {
+		padding: 0 3rem 0 3rem;
+	}
 }
