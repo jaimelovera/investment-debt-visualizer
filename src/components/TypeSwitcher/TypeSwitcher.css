@@ -2,7 +2,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	padding: 1.5rem;
+	padding: 1.5rem 0 0 0;
 	background-color: #1BE300;
 }
 
