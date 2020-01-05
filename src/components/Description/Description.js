@@ -6,14 +6,14 @@ function Description(props) {
 	let investmentDescription = (
 		<React.Fragment>
 			<h2>Investment Calculator</h2>
-			<p>A visual representation of how money grows over time.</p>
+			<p>Determine how your money will grow over time with this free investment calculator.</p>
 		</React.Fragment>
 	)
 
 	let debtDescription = (
 		<React.Fragment>
 			<h2>Debt Repayment Calculator</h2>
-			<p>A visual representation of debt repayment. </p>
+			<p>Determine how long it will take to payoff your debt with this free debt repayment calculator.</p>
 		</React.Fragment>
 	)
 	return (

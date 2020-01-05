@@ -1,5 +1,5 @@
 import React from 'react'
-import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer} from 'recharts'
+import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts'
 import './Charts.css'
 
 function Charts(props) {
@@ -14,7 +14,7 @@ function Charts(props) {
 	}
 	let rate = 0
 	if(props.rate !== ''){
-		rate = parseInt(props.rate)/100
+		rate = parseFloat(props.rate)/100
 	}
 	let payment = 0
 	if(props.payment !== ''){
@@ -26,7 +26,7 @@ function Charts(props) {
 	}
 
 
-	/* Populate data if viewing an investment chart. */
+	/* Populate data if viewing investment chart. */
 	if (props.currentView === 'investment'){
 		let contributions = amount
 		let total = amount
@@ -37,6 +37,7 @@ function Charts(props) {
 			/* Loop over 12 months */
 			for(let i = 0; i < 12; i++){
 				total = total * (1+rate/12) + payment
+				console.log(rate)
 				contributions += payment
 			}
 			let roundedTotal = Math.round(total).toFixed(0)
@@ -44,7 +45,7 @@ function Charts(props) {
 		}
 	}
 
-	/* Populate data if viewing an debt chart. */
+	/* Populate data if viewing debt chart. */
 	if (props.currentView === 'debt'){
 		let total = amount
 		let prevTotal = amount
@@ -129,6 +130,7 @@ function Charts(props) {
 					<XAxis dataKey="Year" />
 					<YAxis />
 					<Tooltip content={<CustomTooltip />} />
+					<Legend />
 					<Bar type="monotone"
 						  dataKey={props.currentView === 'investment' ? 'Contributions' : 'Principal'}
 						  stackId="1"

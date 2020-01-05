@@ -4,16 +4,15 @@
 	justify-content: center;
 	align-items: stretch;
 	background-color: #E6E6E6;
-	padding: 1.5rem;
 	margin: auto;
 	width: 100%;
-	max-width: 700px;
+	max-width: 600px;
 	height: 100%;
 }
 
 .inputvalues-item {
 	text-align: center;
-	padding: 1rem;
+	padding: 2rem;
 }
 
 .inputvalues-item h1{
