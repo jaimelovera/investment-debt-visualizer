@@ -37,7 +37,6 @@ function Charts(props) {
 			/* Loop over 12 months */
 			for(let i = 0; i < 12; i++){
 				total = total * (1+rate/12) + payment
-				console.log(rate)
 				contributions += payment
 			}
 			let roundedTotal = Math.round(total).toFixed(0)
@@ -63,7 +62,7 @@ function Charts(props) {
 
 			/* Loop over 12 months */
 			prevTotal = total
-			for(let i = 0; i < 12; i++){
+			for(let i = 0; i < 12 && total > 0; i++){
 				totalInterest += (total * (monthlyRate))
 				total = total * (1+monthlyRate)
 				total -= payment
@@ -78,7 +77,7 @@ function Charts(props) {
 			if(principal < 0){
 				/* Check if the total balance is paid off on next iteration. */
 				if(total > 0){
-					data.push({Year: currYear, Total: roundedTotal, Principal: 0, Interest: roundedTotal - 0})
+					data.push({Year: currYear, Total: roundedTotal, Principal: 0, Interest: roundedTotal})
 				}
 				else{
 					data.push({Year: currYear, Total: 0, Principal: 0, Interest: 0})
@@ -86,9 +85,8 @@ function Charts(props) {
 				}
 			}
 			else{
-				data.push({Year: currYear, Total: roundedTotal, Principal: principal, Interest: roundedTotal - principal})
+				data.push({Year: currYear, Total: roundedTotal, Principal: principal, Interest: totalInterest})
 			}
-
 		}
 	}
 
