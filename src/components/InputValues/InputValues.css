@@ -13,11 +13,13 @@
 .inputvalues-item {
 	text-align: center;
 	padding: 1rem;
+
 }
 
 .inputvalues-item h1{
 	font-size: 1.15em;
 	text-align: left;
+
 }
 
 .inputvalues-input {
@@ -25,11 +27,14 @@
 	font-size: 1.25em;
     border: 0;
     padding: 2px;
+   	height:100%;
+	width: 100%;
 }
 
 .inputvalues-input input {
 	background-color: #FFF;
 	width: 65px;
+	height: 10px;
 	font-size: 0.9em;
     border: 0;
     outline: none;

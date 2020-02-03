@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('investment-debt-calculator-root'));
+ReactDOM.render(<App />, document.getElementById('investment-loan-calculators-root'));
 
 serviceWorker.unregister();

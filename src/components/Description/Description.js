@@ -12,8 +12,8 @@ function Description(props) {
 
 	let debtDescription = (
 		<React.Fragment>
-			<h2>Debt Repayment Calculator</h2>
-			<p>Determine how long it will take to payoff your debt with this free debt repayment calculator.</p>
+			<h2>Loan Payoff Calculator</h2>
+			<p>Determine how long it will take you to payoff your debt with this free calculator.</p>
 		</React.Fragment>
 	)
 	return (
