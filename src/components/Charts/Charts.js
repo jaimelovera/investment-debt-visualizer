@@ -109,14 +109,14 @@ function Charts(props) {
 	let investmentDescription = <p>Your investment will be worth <span className='charts-blue-text'>${parseInt(data[data.length-1].Total).toLocaleString()}</span> in {years} years.</p>
 	let debtDescription = /* A layered ternary expression to choose appropriate expression. */
 		years === -1 ? 
-		<p>Your debt will increase indefinitely. Increase your monthly payment.</p> : 
+		<p>Your loan will increase indefinitely. Increase your monthly payment.</p> : 
 		years ===  1 ? 
 		parseInt(totalInterest) >= 0 ? 
-		<p>You will payoff your debt within 1 year, with <span className='charts-red-text'>${parseInt(totalInterest.toFixed(0)).toLocaleString()}</span> paid in interest.</p> :
-		<p>You will payoff your debt within 1 year, with no interest paid.</p> : 
+		<p>You will pay off your loan within 1 year, with <span className='charts-red-text'>${parseInt(totalInterest.toFixed(0)).toLocaleString()}</span> paid in interest.</p> :
+		<p>You will pay off your loan within 1 year, with no interest paid.</p> : 
 		parseInt(totalInterest) >= 0 ? 
-		<p>You will payoff your debt in {years} years, with <span className='charts-red-text'>${parseInt(totalInterest.toFixed(0)).toLocaleString()}</span> paid in interest.</p> :
-		<p>You will payoff your debt in {years} years, with no interest paid.</p>
+		<p>You will pay off your loan in {years} years, with <span className='charts-red-text'>${parseInt(totalInterest.toFixed(0)).toLocaleString()}</span> paid in interest.</p> :
+		<p>You will pay off your loan in {years} years, with no interest paid.</p>
 
 
 	return (
