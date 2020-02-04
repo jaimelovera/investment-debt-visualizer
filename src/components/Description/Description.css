@@ -18,6 +18,10 @@
 	padding-bottom: 1rem;
 }
 
+.description-container p a{
+	color: #000;
+}
+
 @media screen and (min-width: 768px) {
 	
 }
