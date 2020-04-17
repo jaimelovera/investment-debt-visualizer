@@ -3,7 +3,8 @@
 	flex-wrap: wrap;
 	justify-content: center;
 	padding: 1.5rem 0 0 0;
-	background-color: #1BE300;
+	background-color: #494949;
+	height: 5rem;
 }
 
 .typeswitcher-container button{
@@ -14,9 +15,9 @@
 	background: none;
 	cursor: pointer;
 	outline: none;
-	border: 1px solid #15AA00;
+	border: 1px solid #64B400;
 	border-radius: 6px;
-	background-color: #1ACD01;
+	background-color: #72CD00;
 	transition: all 0.3s ease 0s;
 }
 
@@ -26,7 +27,7 @@
 }
 
 .typeswitcher-container .typeswitcher-button-pressed{
-	border: 2px solid #000;
+	border: 3px solid #000;
 }
 
 @media screen and (min-width: 768px) {
