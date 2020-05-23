@@ -27,6 +27,16 @@ While building this I learned all about state and props. Passing props, passing 
 
 I found a very nice charting library, [Recharts](https://recharts.org/en-US/), that I leveraged to build the responsive charts after building the dataset with the user given parameters.
 
+## Screenshots
+
+#### Investment Chart
+
+![Investment Chart](./readme_screenshots/investment.png)
+
+#### Debt Payoff Chart
+
+![Debt Payoff Chart](./readme_screenshots/debt.png)
+
 ## App Info
 
 #### Author: [Jaime Lovera](https://www.jaimelovera.com/)
