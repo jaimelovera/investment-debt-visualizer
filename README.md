@@ -2,10 +2,12 @@
 
 > A react web application that takes in a set of parameters and then calculates data to populate a barchart to help user visualize how their money will grow over time with different parameter (i.e. interest, contributions, time).
 
-## Visit My Hosted Demo
+## Visit My Live Demo
+
 https://investment-debt-visualizer.netlify.app/
 
-## Quick Start 
+## Quick Start
+
 ```
 # Install dependencies
 npm install
@@ -18,7 +20,12 @@ npm run build
 ```
 
 ## Motivation
-I think compound interest is very powerful and some people fail to see the magic of compound interest. I wanted to build a quick application to help people visually see how quickly money can grow when reinvested and allowing adequate time for it to grow. As well as showing people how quickly debt can grow when not taken care of responsibly. While building this I learned all about state and props. Passing props, passing functions, updating state, and more. I found a very nice charting library, [Recharts](https://recharts.org/en-US/), that I leveraged to build the responsive charts after building the dataset with the user given parameters.
+
+I think compound interest is very powerful and some people fail to see the magic of compound interest. I wanted to build an application to help people visually see how money can grow when reinvested and allowing adequate time for it to grow. And similarly, how quick debt can grow when not taken care of responsibly.
+
+While building this I learned all about state and props. Passing props, passing functions, updating state, and more. I came across a concept called "prop drilling". Which is when you pass the state of a component down a large tree of components just to get to where it needs to go. I am guilty of this, so in my next projects I plan to find a solution to help me manage a global state, such as Redux.
+
+I found a very nice charting library, [Recharts](https://recharts.org/en-US/), that I leveraged to build the responsive charts after building the dataset with the user given parameters.
 
 ## App Info
 
