@@ -6,7 +6,7 @@ function Description(props) {
 	let investmentDescription = (
 		<React.Fragment>
 			<h2>Investment Calculator</h2>
-			<p>See how your money will grow over time with compunded interest.</p>
+			<p>See how your money will grow over time with compounded interest.</p>
 		</React.Fragment>
 	)
 
