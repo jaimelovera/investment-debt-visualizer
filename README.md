@@ -2,10 +2,6 @@
 
 > A react web application that takes in a set of parameters and then calculates data to populate a barchart to help user visualize how their money will grow over time with different parameter (i.e. interest, contributions, time).
 
-## Visit My Live Demo
-
-https://investment-debt-visualizer.netlify.app/
-
 ## Quick Start
 
 ```
@@ -39,4 +35,4 @@ I found a very nice charting library, [Recharts](https://recharts.org/en-US/), t
 
 ## App Info
 
-#### Author: [Jaime Lovera](https://www.jaimelovera.com/)
+#### Author: [Jaime Lovera](https://github.com/jaimelovera)
