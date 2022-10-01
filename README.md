@@ -1,6 +1,6 @@
 # Investment/Debt Visualizer App Using React
 
-> A react web application that takes in a set of parameters and then calculates data to populate a barchart to help user visualize how their money will grow over time with different parameter (i.e. interest, contributions, time).
+A react web application that takes in a set of parameters ((i.e. interest, contributions, time)) and then calculates data to populate a barchart to help user visualize how their money will grow over time.
 
 ## Quick Start
 
